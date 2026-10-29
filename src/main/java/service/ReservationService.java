@@ -19,10 +19,12 @@ import repository.dao.UserDao;
 import util.Pair;
 
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class ReservationService {
   private final ReservationDao reservationDao;
@@ -76,22 +78,9 @@ public class ReservationService {
 
   // Ejercicio 3
   public List<Reservation> getTopNMostExpensive(
-          ReservationDao reservationDao, Instant from, Instant to, int n)
-          throws InvalidDateRangeException, DataAccessException {
-    if (from == null || to == null || from.isAfter(to)) {
-      throw new InvalidDateRangeException("Invalid date range: from=" + from + ", to=" + to);
-    }
-    if (n <= 0) {
-      return new ArrayList<>();
-    }
-
-    List<Reservation> reservations = new ArrayList<>(reservationDao.findByDateRange(from, to));
-    reservations.sort(Comparator.comparing(Reservation::calculatePrice).reversed());
-
-    if (reservations.size() <= n) {
-      return reservations;
-    }
-    return new ArrayList<>(reservations.subList(0, n));
+      ReservationDao reservationDao, Instant from, Instant to, int n)
+      throws InvalidDateRangeException, DataAccessException {
+    throw new UnsupportedOperationException("Ejercicio 3: implement getTopNMostExpensive");
   }
 
   // Ejercicio 5
